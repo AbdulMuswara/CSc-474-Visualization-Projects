@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <style>
+        :root {
+            --jp-code-font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            --jp-content-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            --jp-cell-prompt-width: 64px;
+            --jp-input-prompt-color: #307fc1;
+            --jp-output-prompt-color: #bf5b3d;
+            --jp-cell-input-bg: #f7f7f7;
+            --jp-layout-color0: #ffffff;
+            --jp-layout-color1: #f7f7f7;
+            --jp-border-color1: #e0e0e0;
+            --jp-content-font-color0: #000000;
+            --jp-content-font-color1: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--jp-content-font-family);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--jp-content-font-color0);
+            background-color: var(--jp-layout-color0);
+            margin: 0;
+            padding: 0;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cell structure */
+        .cell {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .cell-prompt {
+            min-width: var(--jp-cell-prompt-width);
+            width: var(--jp-cell-prompt-width);
+            font-family: var(--jp-code-font-family);
+            font-size: 12px;
+            padding: 10px 8px 10px 0;
+            text-align: right;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .cell-content {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Input prompt styling - Jupyter blue */
+        .input-prompt {
+            color: var(--jp-input-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Output prompt styling - Jupyter red/orange */
+        .output-prompt {
+            color: var(--jp-output-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Code cell input area */
+        .input-area {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            overflow-x: auto;
+        }
+
+        .input-area pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Output area */
+        .output-area {
+            margin-top: 0;
+        }
+
+        .output-wrapper {
+            display: flex;
+            flex-direction: row;
+            margin-top: 4px;
+        }
+
+        .output-content {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 0;
+        }
+
+        .output-content pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Stream output (stdout/stderr) */
+        .output-stream {
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output-stderr {
+            background-color: #fdd;
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        /* Execute result / display data */
+        .output-result {
+            padding: 4px 0;
+        }
+
+        .output-result pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+        }
+
+        /* Image output */
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HTML output (DataFrames, etc.) */
+        .output-html {
+            overflow-x: auto;
+        }
+
+        .output-html table {
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--jp-content-font-family);
+        }
+
+        .output-html table th,
+        .output-html table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .output-html table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .output-html table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Error output */
+        .output-error {
+            background-color: #fff0f0;
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Markdown cell styling */
+        .markdown-cell {
+            padding: 10px 0;
+        }
+
+        .markdown-cell h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0.67em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.83em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1em 0;
+        }
+
+        .markdown-cell h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 1.33em 0;
+        }
+
+        .markdown-cell h5 {
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 1.67em 0;
+        }
+
+        .markdown-cell h6 {
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2.33em 0;
+            color: #6a737d;
+        }
+
+        .markdown-cell p {
+            margin: 0 0 16px 0;
+            line-height: 1.6;
+        }
+
+        .markdown-cell code {
+            font-family: var(--jp-code-font-family);
+            font-size: 85%;
+            background-color: rgba(27, 31, 35, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        .markdown-cell pre {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 3px;
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+
+        .markdown-cell pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 100%;
+        }
+
+        .markdown-cell blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 4px solid #dfe2e5;
+        }
+
+        .markdown-cell ul,
+        .markdown-cell ol {
+            margin: 0 0 16px 0;
+            padding-left: 2em;
+        }
+
+        .markdown-cell li {
+            margin: 0.25em 0;
+        }
+
+        .markdown-cell a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .markdown-cell a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-cell hr {
+            border: 0;
+            border-top: 1px solid var(--jp-border-color1);
+            margin: 24px 0;
+        }
+
+        .markdown-cell img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .markdown-cell table {
+            border-collapse: collapse;
+            margin: 0 0 16px 0;
+        }
+
+        .markdown-cell table th,
+        .markdown-cell table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+
+        .markdown-cell table th {
+            font-weight: 600;
+            background-color: #f6f8fa;
+        }
+
+        .markdown-cell table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
+        /* Raw cell styling */
+        .raw-cell {
+            background-color: var(--jp-layout-color1);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Empty prompt placeholder */
+        .prompt-empty {
+            color: transparent;
+        }
+
+        .export-footer {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--jp-border-color1);
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .export-footer a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .export-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>NYC 311 Noise Complaints – Project 1</h1><br><strong>Research Question:</strong> How do noise complaint patterns differ across NYC boroughs by time of day and day of week?<br><br><strong>Data source:</strong> [NYC Open Data – 311 Service Requests](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9)</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [65]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import pandas as pd
+import requests
+import io
+
+
+
+LIMIT = 20_700_000
+
+url = (
+    "https://data.cityofnewyork.us/resource/erm2-nwe9.csv"
+    "?$where=complaint_type%20like%20'%25Noise%25'"
+    f"&amp;$limit={LIMIT}"
+    "&amp;$select=created_date,complaint_type,descriptor,borough"
+)
+
+print("Fetching data...")
+r = requests.get(url, headers={"X-App-Token": APP_TOKEN})
+
+if r.status_code == 200:
+    df = pd.read_csv(io.StringIO(r.text), dtype=str)
+    print(f"Loaded {len(df):,} rows")
+    display(df.head())
+else:
+    print(f"Error {r.status_code}: {r.text[:300]}")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Fetching data...
+Loaded 4,731,080 rows
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html">
+  <div id="df-b04fb472-9ea7-447c-9754-ef4e6e4b38eb" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>created_date</th>
+      <th>complaint_type</th>
+      <th>descriptor</th>
+      <th>borough</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2026-04-01T01:50:14.000</td>
+      <td>Noise - Vehicle</td>
+      <td>Car/Truck Music</td>
+      <td>MANHATTAN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2026-04-01T01:50:13.000</td>
+      <td>Noise - Street/Sidewalk</td>
+      <td>Loud Music/Party</td>
+      <td>QUEENS</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2026-04-01T01:50:05.000</td>
+      <td>Noise - Residential</td>
+      <td>Loud Music/Party</td>
+      <td>BRONX</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2026-04-01T01:49:58.000</td>
+      <td>Noise - Street/Sidewalk</td>
+      <td>Loud Music/Party</td>
+      <td>BROOKLYN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2026-04-01T01:49:32.000</td>
+      <td>Noise - Street/Sidewalk</td>
+      <td>Loud Music/Party</td>
+      <td>MANHATTAN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-b04fb472-9ea7-447c-9754-ef4e6e4b38eb')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-b04fb472-9ea7-447c-9754-ef4e6e4b38eb button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-b04fb472-9ea7-447c-9754-ef4e6e4b38eb');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Step 2 – Clean & Prepare</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [66]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>df.columns = df.columns.str.lower().str.replace(" ", "_")
+
+df = (
+    df.assign(
+        created_date=pd.to_datetime(df["created_date"], errors="coerce")
+    )
+    .dropna(subset=["created_date"])
+    .assign(
+        hour=lambda x: x["created_date"].dt.hour,
+        day_of_week=lambda x: x["created_date"].dt.dayofweek,
+        year=lambda x: x["created_date"].dt.year,
+        borough=lambda x: x["borough"].str.upper().str.strip()
+    )
+)
+
+BOROUGH_ORDER = ["MANHATTAN", "BROOKLYN", "QUEENS", "BRONX", "STATEN ISLAND"]
+
+df = df[df["borough"].isin(BOROUGH_ORDER)]</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Step 3 – Chart 1: Heatmap (Hour × Day of Week) with Plotly</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [68]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import plotly.express as px
+
+DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+heatmap_data = (
+    df.groupby(["day_of_week", "hour"])
+      .size()
+      .unstack(fill_value=0)
+      .reindex(columns=range(24), fill_value=0)
+)
+
+fig_heatmap = px.imshow(
+    heatmap_data,
+    labels=dict(x="Hour of Day", y="Day of Week", color="Number of complaints"),
+    x=[f"{h%12 or 12}{'am' if h &lt; 12 else 'pm'}" for h in range(24)],
+    y=DAY_LABELS,
+    title="Noise Complaints by Day and Hour",
+    color_continuous_scale="YlOrRd" # Changed color scale to Viridis
+)
+
+fig_heatmap.show()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"><html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>                <div id="ee89f1a4-2f22-413f-9d93-11ff3e613d9c" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("ee89f1a4-2f22-413f-9d93-11ff3e613d9c")) {                    Plotly.newPlot(                        "ee89f1a4-2f22-413f-9d93-11ff3e613d9c",                        [{"coloraxis":"coloraxis","name":"0","x":["12am","1am","2am","3am","4am","5am","6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"],"y":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"z":[[58126,36689,22471,15829,11922,9559,10149,11447,12151,13508,14211,14395,15056,15661,17149,18829,20843,23007,26221,30583,35177,42665,52647,47005],[35639,23116,15023,10745,8687,7144,9256,10544,10924,12012,12610,13706,13838,14801,15511,17189,19501,22038,25445,30022,36109,43589,53523,48733],[37566,23828,15504,10632,8236,7078,9352,10610,11438,12462,13001,13186,13708,13880,14561,16572,19202,21184,24826,28768,33801,40585,52707,48161],[36458,23637,15453,10549,8423,6972,8752,10227,10686,11704,12391,13333,13370,13760,14996,17612,19239,21475,25034,29665,36394,45240,58993,56265],[44318,28278,17804,12342,9239,7373,9004,9985,10727,12292,13059,14165,14583,14926,16407,18366,20857,24583,29386,35743,44558,57698,83074,93376],[84936,61135,40001,27227,19068,12491,9698,10429,14770,17422,17304,17803,19120,21099,23508,25643,28983,32989,39067,47646,60766,80561,121808,135849],[129075,98369,63132,42437,28755,18474,12778,11616,13628,16348,17056,18841,20396,22331,25774,27921,31165,35887,41436,47645,57514,70213,85381,75773]],"type":"heatmap","xaxis":"x","yaxis":"y","hovertemplate":"Hour of Day: %{x}\u003cbr\u003eDay of Week: %{y}\u003cbr\u003eNumber of complaints: %{z}\u003cextra\u003e\u003c\u002fextra\u003e"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"scaleanchor":"y","constrain":"domain","title":{"text":"Hour of Day"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"autorange":"reversed","constrain":"domain","title":{"text":"Day of Week"}},"coloraxis":{"colorbar":{"title":{"text":"Number of complaints"}},"colorscale":[[0.0,"rgb(255,255,204)"],[0.125,"rgb(255,237,160)"],[0.25,"rgb(254,217,118)"],[0.375,"rgb(254,178,76)"],[0.5,"rgb(253,141,60)"],[0.625,"rgb(252,78,42)"],[0.75,"rgb(227,26,28)"],[0.875,"rgb(189,0,38)"],[1.0,"rgb(128,0,38)"]]},"title":{"text":"Noise Complaints by Day and Hour"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('ee89f1a4-2f22-413f-9d93-11ff3e613d9c');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                            </script>        </div>
+</body>
+</html></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Step 4 – Chart 2: Bar Chart (Total by Borough) with Plotly</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [69]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>borough_counts = (
+    df["borough"]
+    .value_counts()
+    .reindex(BOROUGH_ORDER)
+    .fillna(0)
+)
+
+PALETTE = {
+    "MANHATTAN":     "#E63946",
+    "BROOKLYN":      "#457B9D",
+    "QUEENS":        "#2A9D8F",
+    "BRONX":         "#E9C46A",
+    "STATEN ISLAND": "#9B5DE5",
+}
+
+fig_bar = px.bar(
+    x=[b.title() for b in BOROUGH_ORDER],
+    y=borough_counts,
+    color=BOROUGH_ORDER,
+    color_discrete_map=PALETTE,
+    title="Noise Complaints by Borough (2020 – Present)",
+    labels={"x": "Borough", "y": "Total Noise Complaints"}
+)
+
+fig_bar.show()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"><html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>                <div id="85f5d7bf-f68f-4531-88c7-9baac28730d3" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("85f5d7bf-f68f-4531-88c7-9baac28730d3")) {                    Plotly.newPlot(                        "85f5d7bf-f68f-4531-88c7-9baac28730d3",                        [{"alignmentgroup":"True","hovertemplate":"color=MANHATTAN\u003cbr\u003eBorough=%{x}\u003cbr\u003eTotal Noise Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"MANHATTAN","marker":{"color":"#E63946","pattern":{"shape":""}},"name":"MANHATTAN","offsetgroup":"MANHATTAN","orientation":"v","showlegend":true,"textposition":"auto","x":["Manhattan"],"xaxis":"x","y":[1215556],"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"color=BROOKLYN\u003cbr\u003eBorough=%{x}\u003cbr\u003eTotal Noise Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BROOKLYN","marker":{"color":"#457B9D","pattern":{"shape":""}},"name":"BROOKLYN","offsetgroup":"BROOKLYN","orientation":"v","showlegend":true,"textposition":"auto","x":["Brooklyn"],"xaxis":"x","y":[1149526],"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"color=QUEENS\u003cbr\u003eBorough=%{x}\u003cbr\u003eTotal Noise Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"QUEENS","marker":{"color":"#2A9D8F","pattern":{"shape":""}},"name":"QUEENS","offsetgroup":"QUEENS","orientation":"v","showlegend":true,"textposition":"auto","x":["Queens"],"xaxis":"x","y":[889158],"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"color=BRONX\u003cbr\u003eBorough=%{x}\u003cbr\u003eTotal Noise Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BRONX","marker":{"color":"#E9C46A","pattern":{"shape":""}},"name":"BRONX","offsetgroup":"BRONX","orientation":"v","showlegend":true,"textposition":"auto","x":["Bronx"],"xaxis":"x","y":[1376615],"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"color=STATEN ISLAND\u003cbr\u003eBorough=%{x}\u003cbr\u003eTotal Noise Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"STATEN ISLAND","marker":{"color":"#9B5DE5","pattern":{"shape":""}},"name":"STATEN ISLAND","offsetgroup":"STATEN ISLAND","orientation":"v","showlegend":true,"textposition":"auto","x":["Staten Island"],"xaxis":"x","y":[99037],"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Borough"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Total Noise Complaints"}},"legend":{"title":{"text":"color"},"tracegroupgap":0},"title":{"text":"Noise Complaints by Borough (2020 – Present)"},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('85f5d7bf-f68f-4531-88c7-9baac28730d3');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                            </script>        </div>
+</body>
+</html></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Step 5 – Chart 3: Line Chart (Yearly Trend by Borough) with Plotly</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [70]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>current_year = pd.Timestamp.now().year
+
+yearly = (
+    df.query("year &lt; @current_year")
+      .groupby(["year", "borough"])
+      .size()
+      .reset_index(name="count")
+)
+
+fig_line = px.line(
+    yearly,
+    x="year",
+    y="count",
+    color="borough",
+    color_discrete_map=PALETTE,
+    markers=True,
+    title="Noise Complaints Over Time by Borough",
+    labels={"year": "Year", "count": "Number of Complaints"}
+)
+
+fig_line.show()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-html"><html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>                <div id="922ebb1c-d136-42c4-abd5-256231d45c4d" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("922ebb1c-d136-42c4-abd5-256231d45c4d")) {                    Plotly.newPlot(                        "922ebb1c-d136-42c4-abd5-256231d45c4d",                        [{"hovertemplate":"borough=BRONX\u003cbr\u003eYear=%{x}\u003cbr\u003eNumber of Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BRONX","line":{"color":"#E9C46A","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"BRONX","orientation":"v","showlegend":true,"x":[2020,2021,2022,2023,2024,2025],"xaxis":"x","y":[251850,213422,242597,141303,213606,278956],"yaxis":"y","type":"scatter"},{"hovertemplate":"borough=BROOKLYN\u003cbr\u003eYear=%{x}\u003cbr\u003eNumber of Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BROOKLYN","line":{"color":"#457B9D","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"BROOKLYN","orientation":"v","showlegend":true,"x":[2020,2021,2022,2023,2024,2025],"xaxis":"x","y":[185785,178957,166758,186929,190487,200003],"yaxis":"y","type":"scatter"},{"hovertemplate":"borough=MANHATTAN\u003cbr\u003eYear=%{x}\u003cbr\u003eNumber of Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"MANHATTAN","line":{"color":"#E63946","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"MANHATTAN","orientation":"v","showlegend":true,"x":[2020,2021,2022,2023,2024,2025],"xaxis":"x","y":[204961,216577,185137,196788,190773,182684],"yaxis":"y","type":"scatter"},{"hovertemplate":"borough=QUEENS\u003cbr\u003eYear=%{x}\u003cbr\u003eNumber of Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"QUEENS","line":{"color":"#2A9D8F","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"QUEENS","orientation":"v","showlegend":true,"x":[2020,2021,2022,2023,2024,2025],"xaxis":"x","y":[142492,143980,130734,145650,142327,153665],"yaxis":"y","type":"scatter"},{"hovertemplate":"borough=STATEN ISLAND\u003cbr\u003eYear=%{x}\u003cbr\u003eNumber of Complaints=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"STATEN ISLAND","line":{"color":"#9B5DE5","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines+markers","name":"STATEN ISLAND","orientation":"v","showlegend":true,"x":[2020,2021,2022,2023,2024,2025],"xaxis":"x","y":[17184,15351,14486,15101,16056,17651],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Year"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Number of Complaints"}},"legend":{"title":{"text":"borough"},"tracegroupgap":0},"title":{"text":"Noise Complaints Over Time by Borough"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('922ebb1c-d136-42c4-abd5-256231d45c4d');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                            </script>        </div>
+</body>
+</html></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="export-footer">
+        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
+    </footer>
+</body>
+</html>
